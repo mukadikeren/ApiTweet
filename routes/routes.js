@@ -7,7 +7,7 @@ const router = Router()
 // ajouter 
 router.get('/getAll', getAll)
 // recuperer une ressource 
-router.get('/getOne', getOne)
+router.get('/getOne/:id', getOne)
 
 router.post('createOne', createOne)
 // mettre a jour, modifier
