@@ -66,12 +66,13 @@ w6EA3XhefaRE0erdAgMBAAE=
 app.put("/", (req, res) => {
     const { nom, motdepasse, like, title, message } = req.body
 
-    const valid = users.some((users) => users.nom === nom && users.motdepasse === motdepasse && users.like === like && users.message === message && users.title === title)
+    const valid = users.some((users) => users.nom === nom && users.motdepasse === motdepasse)
     // console.log("nom : "+ nom)
     // console.log("motdepasse : "+ motdepasse);
     // console.log("like : "+ like);
     // console.log("title : "+ title);
     // console.log("message : "+ message);
+
 
     res.send(valid)
     const token = jwt.sign({ nom }, privatekey, { algorithm: "RS256" })
@@ -94,3 +95,6 @@ app.delete("/", (req, res) => {
 app.listen(port, () => {
     console.log("severeur démaré");
 })
+
+
+
