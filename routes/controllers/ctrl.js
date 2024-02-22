@@ -5,6 +5,7 @@ const getAll = (req, res) => {
     res.send(tweets);
  }
 
+
 const getOne = (req, res) => {
     const id = parseInt(req.params.id);
     const tweet = tweets.find(tweet => tweet.id === id);

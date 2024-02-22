@@ -2,11 +2,15 @@ const express = require("express");
 const jwt = require('jsonwebtoken');
 const app = express()
 const port = 5000
+const {PrismaClient} = require('@prisma/client')
+const prisma = new PrismaClient
 // app.use(express.json())
 
 
 
 app.get("/", (req, res) => {
+    prisma.user.findMany()
+    .then(users => res.send(users))
 
     const tab = [
         {
@@ -14,7 +18,6 @@ app.get("/", (req, res) => {
             message: " bonjour",
             nom: " keren",
             title: "n'importe qioi",
-            like: 200,
             motdepasse: "1234"
         },
         {

@@ -5,24 +5,30 @@ const prisma = new PrismaClient()
 
 
 async function main() {
+    await prisma.user.create({
+        data: {
+            email: "kerenhappuc@gmail.com",
+            name: "keren",
+        }
 
+    })
 }
 
 
 main()
 
-  .then(async () => {
+    .then(async () => {
 
-    await prisma.$disconnect()
+        await prisma.$disconnect()
 
-  })
+    })
 
-  .catch(async (e) => {
+    .catch(async (e) => {
 
-    console.error(e)
+        console.error(e)
 
-    await prisma.$disconnect()
+        await prisma.$disconnect()
 
-    process.exit(1)
+        process.exit(1)
 
-  })
+    })

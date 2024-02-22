@@ -1,11 +1,14 @@
 import {Router} from 'express'
 import {createOne, deleteOne, getAll, getOne, updateOne} from '../controllers/ctrl.js'
 import { get, post } from './controllers/ctrl.js'
+const {PrismaClient} = require('@prisma/client')
+const prisma = new PrismaClient
 
 const router = Router()
 
 // ajouter 
 router.get('/getAll', getAll)
+
 // recuperer une ressource 
 router.get('/getOne/:id', getOne)
 

@@ -38,4 +38,5 @@ model User {
   motdepass String
   message String
   like Int @default(0)
+  // posts Posts[]
 }
