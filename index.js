@@ -2,15 +2,17 @@ const express = require("express");
 const jwt = require('jsonwebtoken');
 const app = express()
 const port = 5000
-const {PrismaClient} = require('@prisma/client')
-const prisma = new PrismaClient
-// app.use(express.json())
+const userRooter= require("./models/users.js")
+
+// const {PrismaClient} = require('@prisma/client')
+// const prisma = new PrismaClient
+app.use(express.json())
 
 
 
-app.get("/", (req, res) => {
-    prisma.user.findMany()
-    .then(users => res.send(users))
+app.get("/", function (req, res, nex) {
+    userRooter.getAllUsers().then(users => res.send(users))
+
 
     const tab = [
         {
@@ -29,8 +31,6 @@ app.get("/", (req, res) => {
             motdepasse: "4567"
 
         },
-
-
     ]
 
     const privatekey = `-----BEGIN RSA PRIVATE KEY-----
@@ -57,11 +57,19 @@ w6EA3XhefaRE0erdAgMBAAE=
 -----END PUBLIC KEY-----`
 
 
-
+console.log(tab);
     // res.send("bienveue chez nous ")
     res.json(tab)
 })
+app.get("/:id([0-9]+)", function (req, res, nex) {
+    userRooter.getUsers(+req.params.id).then(user => res.send(user))
 
+});
+
+app.post("/", function (req, res, nex) {
+    userRooter.addUser(req.body).then(user => res.send(user))
+
+}); 
 // app.listen(port,()=>{
 //     console.log("severeur démaré");
 // })
